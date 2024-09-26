@@ -1,4 +1,4 @@
-import { DB, readDB, writeDB } from "@lib/DB";
+import { DB, readDB, writeDB,Database ,Payload} from "@lib/DB";
 import { checkToken } from "@lib/checkToken";
 import { nanoid } from "nanoid";
 import { NextRequest, NextResponse } from "next/server";
@@ -6,6 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 export const GET = async (request: NextRequest) => {
   readDB();
 
+  const foundRoom = (<Database>DB).rooms.find((x) => x.roomName === roomName);
    return NextResponse.json(
      {
        ok: false,
